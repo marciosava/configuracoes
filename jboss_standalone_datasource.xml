@@ -1,0 +1,82 @@
+Exemplos de configuração de DataSource (e drives) no arquivo de configuração do JBoss Standalone
+
+ <datasources>
+                <datasource jndi-name="java:jboss/jdbc/smfDS" pool-name="smfDS" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=oracledesscan.intra.goias.gov.br)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orades)))</connection-url>
+                    <driver>oracle</driver>
+                    <pool>
+                        <min-pool-size>0</min-pool-size>
+                        <max-pool-size>10</max-pool-size>
+                        <prefill>true</prefill>
+                        <use-strict-min>false</use-strict-min>
+                        <flush-strategy>FailingConnectionOnly</flush-strategy>
+                    </pool>
+                    <security>
+                        <user-name>smfuser</user-name>
+                        <password>smf789</password>
+                    </security>
+                    <validation>
+                        <validate-on-match>false</validate-on-match>
+                        <background-validation>false</background-validation>
+                        <use-fast-fail>false</use-fast-fail>
+                    </validation>
+                    <timeout>
+                        <set-tx-query-timeout>true</set-tx-query-timeout>
+                        <blocking-timeout-millis>30000</blocking-timeout-millis>
+                        <idle-timeout-minutes>3</idle-timeout-minutes>
+                        <query-timeout>120</query-timeout>
+                        <use-try-lock>160</use-try-lock>
+                    </timeout>
+                    <statement>
+                        <prepared-statement-cache-size>5000</prepared-statement-cache-size>
+                        <share-prepared-statements>true</share-prepared-statements>
+                    </statement>
+                </datasource>
+                <datasource jta="true" jndi-name="java:/jdbc/portalsefaz" pool-name="portalsefaz" enabled="true" use-java-context="false" use-ccm="true">
+                    <connection-url>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=oracledesscan.intra.goias.gov.br)(PORT=1521))(CONNECT_DATA=(SERVER=SHARED)(SERVICE_NAME=orades))))</connection-url>
+                    <driver>oracle</driver>
+                    <pool>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>10</max-pool-size>
+                        <prefill>false</prefill>
+                        <use-strict-min>false</use-strict-min>
+                        <flush-strategy>FailingConnectionOnly</flush-strategy>
+                    </pool>
+                    <security>
+                        <user-name>ptauser</user-name>
+                        <password>ptapwd</password>
+                    </security>
+                    <validation>
+                        <validate-on-match>false</validate-on-match>
+                        <background-validation>false</background-validation>
+                        <use-fast-fail>false</use-fast-fail>
+                    </validation>
+                    <timeout>
+                        <set-tx-query-timeout>true</set-tx-query-timeout>
+                        <blocking-timeout-millis>30000</blocking-timeout-millis>
+                        <idle-timeout-minutes>3</idle-timeout-minutes>
+                        <query-timeout>120</query-timeout>
+                        <use-try-lock>160</use-try-lock>
+                    </timeout>
+                    <statement>
+                        <prepared-statement-cache-size>5000</prepared-statement-cache-size>
+                        <share-prepared-statements>true</share-prepared-statements>
+                    </statement>
+                </datasource>
+                <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+                    <driver>h2</driver>
+                    <security>
+                        <user-name>sa</user-name>
+                        <password>sa</password>
+                    </security>
+                </datasource>
+                <drivers>
+                    <driver name="oracle" module="com.oracle.jdbc">
+                        <xa-datasource-class>oracle.jdbc.driver.OracleDriver</xa-datasource-class>
+                    </driver>
+                    <driver name="h2" module="com.h2database.h2">
+                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+                    </driver>
+                </drivers>
+            </datasources>
