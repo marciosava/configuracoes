@@ -1,0 +1,16 @@
+Configuração que vai no repositorio local do usuário (normalmente no .m2).
+
+Configuração de Mirror dentro do arquivo.xml
+
+
+<settings>
+	<!-- Configurações dos mirrors. -->
+	<mirrors>
+		<mirror>
+			<id>SEFAZGO</id>
+			<name>SEFAZ-GO Desenvolvimento</name>
+			<url>http://integracao.intra.goias.gov.br/nexus/content/groups/SEFAZGO/</url>
+			<mirrorOf>external:*</mirrorOf>
+		</mirror>
+	</mirrors>
+</settings>
