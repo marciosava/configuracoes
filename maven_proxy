@@ -1,0 +1,15 @@
+Configuração que vai dentro do Arquivo de configuração principal do Maven: "\maven-<versao>\conf\"
+
+
+<localRepository>${user.home}/m2_externo/repository</localRepository>
+
+<proxy>
+		<id>SEFAZGO</id>
+		<active>true</active>
+		<protocol>http</protocol>
+		<username>SEFAZGO\daniel-sp</username>
+		<password>FocoTranquilidade</password>
+		<host>proxy.sefaz.go.gov.br</host>
+		<port>2303</port>
+		<nonProxyHosts>10.* | *sefaznet* | intranetdes*</nonProxyHosts>
+</proxy>
